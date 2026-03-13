@@ -1,0 +1,140 @@
+# AI Companion Default Configuration
+# Copy this file and customize for your environment
+
+app:
+  # Execution mode: voice, discord, telegram, unity
+  mode: voice
+  
+  # Logging configuration
+  log_level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  log_file: logs/companion.log
+  
+  # Environment: development, production
+  environment: development
+
+llm:
+  # LLM backend: kobold (local), openai (API)
+  backend: kobold
+  
+  # Kobold configuration (for local GGUF models)
+  kobold_url: http://localhost:5001/api/v1/generate
+  
+  # OpenAI configuration (set via environment variable OPENAI_API_KEY)
+  # openai_api_key: ${OPENAI_API_KEY}
+  
+  # Generation parameters
+  temperature: 0.7
+  top_p: 0.9
+  max_tokens: 300
+  
+  # System prompt file
+  system_prompt_file: prompts/default.txt
+
+tts:
+  # TTS engine: piper, pyttsx3, gpt_sovits
+  engine: piper
+  
+  # Piper TTS configuration
+  piper_model_path: en_US-hfc_female-medium.onnx
+  
+  # pyttsx3 configuration
+  voice_index: 1  # 0 for male, 1 for female
+  rate: 180  # Speech rate
+  volume: 1.0  # Volume (0.0 to 1.0)
+  
+  # GPT-SoVITS configuration
+  gpt_sovits_api_url: http://127.0.0.1:9880
+  gpt_sovits_ref_audio: SOVITS/reference.wav  # Reference audio for voice cloning
+  gpt_sovits_prompt_text: ""  # Text that matches the reference audio
+  gpt_sovits_prompt_lang: en  # Language of prompt text
+  gpt_sovits_text_lang: en  # Language of text to synthesize
+  gpt_sovits_top_k: 5
+  gpt_sovits_top_p: 1.0
+  gpt_sovits_temperature: 1.0
+  gpt_sovits_speed_factor: 1.0
+  
+  # Output directory for generated audio
+  output_dir: Audio/
+
+stt:
+  # Speech recognition language code
+  language: es-ES  # Use en-US for English
+  
+  # Recognition parameters
+  energy_threshold: 4000
+  pause_threshold: 0.8
+
+memory:
+  # SQLite database path
+  storage_path: data/memory.db
+  
+  # Maximum conversation history to keep in context
+  max_history: 20
+  
+  # Sentence transformer model for semantic search
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  
+  # Similarity threshold for memory retrieval (0.0 to 1.0)
+  similarity_threshold: 0.7
+  
+  # Enable automatic summarization of old conversations
+  enable_summarization: true
+  summary_threshold: 100  # Summarize after this many messages
+
+integrations:
+  discord:
+    # Enable Discord bot integration
+    enabled: false  # Set to true and configure DISCORD_TOKEN in .env
+    
+    # Discord bot token (set via environment variable DISCORD_TOKEN)
+    # token: ${DISCORD_TOKEN}
+    
+    # Voice channel ID to auto-join (optional)
+    # voice_channel_id: 929102211714256906
+    
+    # Command prefix
+    command_prefix: "!"
+    
+    # Path to ffmpeg executable
+    ffmpeg_path: ffmpeg
+  
+  telegram:
+    # Enable Telegram bot integration
+    enabled: false  # Set to true and configure TELEGRAM_TOKEN in .env
+    
+    # Telegram bot token (set via environment variable TELEGRAM_TOKEN)
+    # token: ${TELEGRAM_TOKEN}
+  
+  wanikani:
+    # Enable WaniKani integration for Japanese learning
+    enabled: false  # Set to true and configure WANIKANI_API_KEY in .env
+    
+    # WaniKani API key (set via environment variable WANIKANI_API_KEY)
+    # api_key: ${WANIKANI_API_KEY}
+    
+    # Cache time-to-live in seconds (1 hour)
+    cache_ttl: 3600
+    
+    # Cache file path
+    cache_path: data/wanikani_cache.json
+  
+  unity:
+    # Enable Unity 3D avatar integration
+    enabled: false  # Set to true to enable Unity avatar
+    
+    # Unity client UDP address and port
+    address: 127.0.0.1
+    port: 5005
+    
+    # Audio directory accessible by Unity
+    audio_dir: Audio/
+
+rate_limits:
+  # OpenAI API rate limit (requests per minute)
+  openai_requests_per_minute: 20
+  
+  # WaniKani API rate limit (requests per minute)
+  wanikani_requests_per_minute: 60
+  
+  # User message rate limit (messages per minute)
+  user_messages_per_minute: 10

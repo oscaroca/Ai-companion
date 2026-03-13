@@ -1,0 +1,102 @@
+# Environment and secrets
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# Audio files
+Audio/*.wav
+Audio/*.mp3
+!Audio/.gitkeep
+# But keep the directory structure
+!Audio/
+
+# Models
+*.pth
+*.bin
+
+# Cache files
+*.json.cache
+data/wanikani_cache.json
+
+# Data
+data/
+*.db
+*.sqlite
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.hypothesis/
+
+# Legacy
+legacy/
+
+# External tools and packages
+external/
+GPT-SoVITS-v3lora-20250228/
+GPT-SoVITS-v3lora-20250228.7z
+SOVITS/
+llm model start/
+
+# Avatar and model files
+*.vrm
+*.vroid
+model.vroid
+avatar.vrm
+
+# Temporary audio files
+*.wav
+!Audio/.gitkeep
+output.wav
+tts_temp.wav
+
+# ONNX model files (keep .json config)
+*.onnx
+!*.onnx.json
+
+# Kiro
+.kiro
