@@ -1,5 +1,6 @@
 # AI Companion
 
+<img src="companion.gif" />
 A production-ready, modular AI companion system with multiple interaction modes, persistent memory, and extensible integrations.
 
 ## Features
@@ -43,6 +44,7 @@ copy .env.example .env
 ```
 
 Edit `.env` and add your API keys:
+
 - `OPENAI_API_KEY`: Your OpenAI API key (if using OpenAI backend)
 - `DISCORD_TOKEN`: Your Discord bot token (if using Discord)
 - `TELEGRAM_TOKEN`: Your Telegram bot token (if using Telegram)
@@ -70,6 +72,7 @@ python main.py --mode voice
 ```
 
 Speak naturally to interact with the AI companion. The system will:
+
 1. Listen for your speech
 2. Convert speech to text
 3. Generate an AI response
@@ -91,11 +94,13 @@ python main.py --mode discord
 ```
 
 Runs the AI companion as a Discord bot. Configure in `.env`:
+
 ```env
 DISCORD_TOKEN=your-discord-bot-token
 ```
 
 Then enable in `config/default_config.yaml`:
+
 ```yaml
 integrations:
   discord:
@@ -103,6 +108,7 @@ integrations:
 ```
 
 **Discord Commands:**
+
 - `!join` - Join your voice channel
 - `!leave` - Leave voice channel
 - `!talk <message>` - Talk to the AI
@@ -116,11 +122,13 @@ python main.py --mode telegram
 ```
 
 Runs the AI companion as a Telegram bot. Configure in `.env`:
+
 ```env
 TELEGRAM_TOKEN=your-telegram-bot-token
 ```
 
 Then enable in `config/default_config.yaml`:
+
 ```yaml
 integrations:
   telegram:
@@ -128,6 +136,7 @@ integrations:
 ```
 
 **Telegram Commands:**
+
 - `/start` - Start the bot
 - `/help` - Show help
 - `/reset` - Reset conversation
@@ -137,6 +146,7 @@ integrations:
 ### Unity Avatar Mode
 
 Unity mode runs alongside other modes. Enable in `config/default_config.yaml`:
+
 ```yaml
 integrations:
   unity:
@@ -147,6 +157,7 @@ integrations:
 ```
 
 Then run with voice or text mode:
+
 ```bash
 python main.py --mode voice  # With Unity avatar
 ```
@@ -179,7 +190,7 @@ The application uses a YAML configuration file (`config/default_config.yaml`) wi
 
 ```yaml
 app:
-  mode: voice  # voice, text, discord, telegram, unity
+  mode: voice # voice, text, discord, telegram, unity
   log_level: INFO
   log_file: logs/companion.log
   environment: development
@@ -189,7 +200,7 @@ app:
 
 ```yaml
 llm:
-  backend: kobold  # kobold or openai
+  backend: kobold # kobold or openai
   kobold_url: http://localhost:5001/api/v1/generate
   temperature: 0.7
   max_tokens: 300
@@ -199,7 +210,7 @@ llm:
 
 ```yaml
 tts:
-  engine: piper  # piper, pyttsx3, or gpt_sovits
+  engine: piper # piper, pyttsx3, or gpt_sovits
   piper_model_path: en_US-hfc_female-medium.onnx
   output_dir: Audio/
 ```
@@ -295,13 +306,14 @@ Uses your system's built-in TTS voices. No additional setup required.
 ```yaml
 tts:
   engine: pyttsx3
-  voice_index: 1  # 0 for male, 1 for female
+  voice_index: 1 # 0 for male, 1 for female
   rate: 180
 ```
 
 ## Memory System
 
 The AI companion uses a semantic memory system that:
+
 - Stores all conversations in a SQLite database
 - Generates embeddings for semantic search
 - Retrieves relevant context based on similarity
@@ -342,6 +354,7 @@ mypy .
 ### "No module named 'piper'"
 
 Install Piper TTS:
+
 ```bash
 pip install piper-tts
 ```
@@ -349,6 +362,7 @@ pip install piper-tts
 ### "Could not find ffmpeg"
 
 Install ffmpeg:
+
 - Windows: Download from [ffmpeg.org](https://ffmpeg.org/download.html)
 - Linux: `sudo apt-get install ffmpeg`
 - Mac: `brew install ffmpeg`
